@@ -15,6 +15,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', \App\Http\Livewire\HomeComponent::class);
 
+/*
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+*/
+
+// adminstrator
+Route::middleware(['auth:sanctum', 'verified','adminAuth'])->group(function (){
+    Route::get('/admin/dashboard',\App\Http\Livewire\admin\AdminDashboardComponent::class)->name('admin.dashboard');
+});
+
+// user
+Route::middleware(['auth:sanctum', 'verified'])->group(function (){
+    Route::get('/user/dashboard',\App\Http\Livewire\user\UserDashboardComponent::class)->name('user.dashboard');
+});
