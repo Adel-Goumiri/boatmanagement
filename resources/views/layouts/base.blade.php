@@ -37,10 +37,8 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-
                 @if(Route::has('login'))
                     @auth
-                        @if(Auth::user()->role === 'admin')
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->name }}</a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -54,32 +52,8 @@
                                     </form>
                                 </ul>
                             </li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ Auth::user()->name }}</a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">Dashboard</a></li>
-                                    <li><hr class="dropdown-divider" /></li>
-                                    <li class="dropdown-item">
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout').submit();">Logout</a>
-                                    </li>
-                                    <form id="logout" method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                    </form>
-                                </ul>
-                            </li>
-                        @endif
-                    @else
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-chart-pie mr-2"></i></a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li class="nav-item" ><a title="Register or Login" class="nav-link" href="{{ route('login') }}">Login</a></li>
-                                <li class="nav-item" ><a title="Register or Login" class="nav-link" href="{{ route('register') }}">Register</a></li>
-                            </ul>
-                        </li>
                     @endif
                 @endif
-
             </ul>
         </div>
     </div>
